@@ -2,7 +2,7 @@ import logo from "../assets/logo.png";
 
 export default function Hero() {
   return (
-    <section className="hero">
+    <section id="hero" className="hero">
       <img src={logo} alt="Nexlio Logo" className="logo" />
 
       <h1>Next Level Digital Solutions</h1>
@@ -14,6 +14,9 @@ export default function Hero() {
       <a href="#contact" className="hero-btn magnetic">
                 Start Your Project
         </a>
+        <div className="scroll-indicator">
+  Scroll ↓
+</div>
     </section>
   );
 }
