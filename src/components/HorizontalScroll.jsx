@@ -3,6 +3,7 @@ import { useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
+import ReactGA from "react-ga4";
 
 import webVideo from "../assets/videos/web.mp4";
 import brandingVideo from "../assets/videos/branding.mp4";
@@ -202,7 +203,15 @@ export default function HorizontalScroll() {
   </ul>
 </div>
 
-  <motion.button
+  <motion.button onClick={() => {
+    ReactGA.event({
+      category: "Lead",
+      action: `Start Project - ${service.title}`,
+    });
+
+    window.location.href = "#contact";
+  }}
+
     initial={{ opacity: 0, scale: 0.9 }}
     whileInView={{ opacity: 1, scale: 1 }}
     transition={{ delay: 0.4 }}

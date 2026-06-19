@@ -9,15 +9,25 @@ import Contact from "./components/Contact";
 import Particles from "./components/Particles";
 import "./index.css";
 import WhatsAppButton from "./components/WhatsAppButton";
+import Testimonials from "./components/Testimonials";
+
+import { useEffect } from "react";
+import ReactGA from "react-ga4";
 
 function App() {
+  useEffect(() => {
+  ReactGA.send({
+    hitType: "pageview",
+    page: window.location.pathname,
+  });
+}, []);
   return (
     <>
       <Loader />
       <Navbar />
       <ProgressBar />
       <Cursor />
-      <Particles />
+      {/* <Particles /> */}
 
       <div className="bg-glow glow-1"></div>
       <div className="bg-glow glow-2"></div>
@@ -25,6 +35,7 @@ function App() {
       <Hero />
       <HorizontalScroll />
       <Portfolio />
+      <Testimonials />
       <Contact />
       <WhatsAppButton />
     </>

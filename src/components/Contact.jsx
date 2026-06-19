@@ -18,9 +18,15 @@ export default function Contact() {
         alert("Message sent successfully!");
         form.current.reset();
       })
-      .catch(() => {
-        alert("Something went wrong.");
-      });
+      .catch((error) => {
+  console.log("EmailJS Error:", error);
+
+  alert(
+    error?.text ||
+    error?.message ||
+    "Something went wrong."
+  );
+});
   };
 
   return (
