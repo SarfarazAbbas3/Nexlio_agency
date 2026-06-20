@@ -20,6 +20,14 @@ export default function Hero() {
   } >
                 Start Your Project
         </a>
+        <a
+  href="https://wa.me/923283363738?text=Hi%20Nexlio,%20I%20want%20to%20discuss%20a%20project."
+  target="_blank"
+  rel="noopener noreferrer"
+  className="hero-btn whatsapp-btn"
+>
+  Chat on WhatsApp
+</a>
         <div className="scroll-indicator">
   Scroll ↓
 </div>

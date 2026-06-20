@@ -640,24 +640,36 @@ body {
   resize: vertical;
 }
 
-.whatsapp-btn {
+.whatsapp-float {
   position: fixed;
-  right: 24px;
   bottom: 24px;
-
-  z-index: 999;
-
-  padding: 16px 24px;
-
-  border-radius: 999px;
+  right: 24px;
+  z-index: 9999;
 
   background: #25d366;
   color: white;
 
+  padding: 14px 22px;
+  border-radius: 999px;
+
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 600;
 
   box-shadow: 0 10px 30px rgba(37, 211, 102, 0.35);
+
+  transition: all 0.3s ease;
+}
+
+.whatsapp-float:hover {
+  transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+  .whatsapp-float {
+    bottom: 18px;
+    right: 18px;
+    padding: 12px 18px;
+  }
 }
 
 .testimonials {
@@ -707,4 +719,20 @@ body {
   .testimonial-grid {
     grid-template-columns: 1fr;
   }
+}
+
+.whatsapp-btn {
+  background: #25d366;
+  color: #fff;
+  margin-top: 16px;
+  text-decoration: none;
+}
+
+.whatsapp-btn:hover {
+  transform: translateY(-2px);
+}
+.contact-form .whatsapp-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -62,6 +62,14 @@ export default function Contact() {
         <button type="submit" className="hero-btn">
           Send Message
         </button>
+        <a
+  href="https://wa.me/923283363738?text=Hi%20Nexlio,%20I%20want%20to%20discuss%20a%20project."
+  target="_blank"
+  rel="noopener noreferrer"
+  className="hero-btn whatsapp-btn"
+>
+  Chat on WhatsApp
+</a>
       </form>
     </section>
   );
