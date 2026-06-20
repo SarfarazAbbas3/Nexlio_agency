@@ -71,6 +71,16 @@ export default function Contact() {
   Chat on WhatsApp
 </a>
       </form>
+
+      <div className="contact-info">
+  <a href="mailto:nexlio.info@gmail.com">
+    nexlio.info@gmail.com
+  </a>
+
+  <a href="tel:+923283363738">
+    +92 328 3363738
+  </a>
+</div>
     </section>
   );
 }

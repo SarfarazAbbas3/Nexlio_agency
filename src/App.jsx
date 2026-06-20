@@ -10,6 +10,7 @@ import Particles from "./components/Particles";
 import "./index.css";
 import WhatsAppButton from "./components/WhatsAppButton";
 import Testimonials from "./components/Testimonials";
+import Footer from "./components/Footer";
 
 import { useEffect } from "react";
 import ReactGA from "react-ga4";
@@ -37,6 +38,7 @@ function App() {
       <Portfolio />
       <Testimonials />
       <Contact />
+      <Footer />
       <WhatsAppButton />
     </>
   );
