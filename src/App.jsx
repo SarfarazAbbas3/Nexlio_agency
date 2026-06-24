@@ -1,3 +1,9 @@
+import { Routes, Route } from "react-router-dom";
+
+import WebDevelopment from "./pages/WebDevelopment";
+import Branding from "./pages/Branding";
+import Marketing from "./pages/Marketing";
+
 import Navbar from "./components/Navbar";
 import Portfolio from "./components/Portfolio";
 import ProgressBar from "./components/ProgressBar";
@@ -38,15 +44,39 @@ function App() {
       <div className="bg-glow glow-1"></div>
       <div className="bg-glow glow-2"></div>
 
-      <Hero />
-      <HorizontalScroll />
-      <Portfolio />
-      <Insights />
-      <Testimonials />
-      <WhyChoose />
-      <Process />
-      <Contact />
-      <Footer />
+      <Routes>
+  <Route
+    path="/"
+    element={
+      <>
+        <Hero />
+        <HorizontalScroll />
+        <Portfolio />
+        <Insights />
+        <Testimonials />
+        <WhyChoose />
+        <Process />
+        <Contact />
+        <Footer />
+      </>
+    }
+  />
+
+  <Route
+    path="/web-development"
+    element={<WebDevelopment />}
+  />
+
+  <Route
+    path="/branding"
+    element={<Branding />}
+  />
+
+  <Route
+    path="/marketing"
+    element={<Marketing />}
+  />
+</Routes>
       <WhatsAppButton />
     </>
   );

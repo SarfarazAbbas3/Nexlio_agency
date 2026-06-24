@@ -1,10 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
 import App from "./App.jsx";
 import ReactGA from "react-ga4";
+import "./index.css";
 
 ReactGA.initialize("G-XSS9JWY2XC");
-import "./index.css";
 
 import Lenis from "lenis";
 
@@ -22,6 +23,8 @@ requestAnimationFrame(raf);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>
 );
