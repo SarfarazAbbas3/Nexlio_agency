@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-
+import LocalBusinessSchema from "./components/LocalBusinessSchema";
 import WebDevelopment from "./pages/WebDevelopment";
 import Branding from "./pages/Branding";
 import Marketing from "./pages/Marketing";
@@ -39,6 +39,7 @@ function App() {
     <>
       <Loader />
       <Schema />
+      <LocalBusinessSchema />
       <ScrollProgress />
       <Navbar />
       <ProgressBar />
