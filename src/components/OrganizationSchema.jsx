@@ -9,7 +9,7 @@ export default function OrganizationSchema() {
     description:
       "Nexlio is a digital agency providing Web Development, Branding, Digital Marketing, Content Creation, Video Editing and Vector Art services.",
 
-    email: "info.nexlioo@gmail.com",
+    email: "info@nexlioo.com",
     telephone: "+923283363738",
 
     sameAs: [

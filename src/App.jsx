@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import OrganizationSchema from "./components/OrganizationSchema";
 import LocalBusinessSchema from "./components/LocalBusinessSchema";
 import WebSiteSchema from "./components/WebSiteSchema";
 import WebDevelopment from "./pages/WebDevelopment";
@@ -40,6 +41,7 @@ function App() {
     <>
       <Loader />
       <Schema />
+      <OrganizationSchema />
       <LocalBusinessSchema />
       <WebSiteSchema />
       <ScrollProgress />
