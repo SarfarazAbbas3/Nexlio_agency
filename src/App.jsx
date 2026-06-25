@@ -6,7 +6,7 @@ import Marketing from "./pages/Marketing";
 import ContentCreation from "./pages/ContentCreation";
 import VideoEditing from "./pages/VideoEditing";
 import VectorArt from "./pages/VectorArt";
-
+import Schema from "./components/Schema";
 import Navbar from "./components/Navbar";
 import Portfolio from "./components/Portfolio";
 import ProgressBar from "./components/ProgressBar";
@@ -38,6 +38,7 @@ function App() {
   return (
     <>
       <Loader />
+      <Schema />
       <ScrollProgress />
       <Navbar />
       <ProgressBar />

@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://www.nexlioo.com/</loc>
-  </url>
+
+<url>
+<loc>https://nexlioo.com/</loc>
+</url>
+
+<url>
+<loc>https://nexlioo.com/web-development</loc>
+</url>
+
+<url>
+<loc>https://nexlioo.com/branding</loc>
+</url>
+
+<url>
+<loc>https://nexlioo.com/marketing</loc>
+</url>
+
+<url>
+<loc>https://nexlioo.com/content-creation</loc>
+</url>
+
+<url>
+<loc>https://nexlioo.com/video-editing</loc>
+</url>
+
+<url>
+<loc>https://nexlioo.com/vector-art</loc>
+</url>
+
 </urlset>

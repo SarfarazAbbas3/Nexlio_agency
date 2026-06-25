@@ -1,4 +1,5 @@
 User-agent: *
+
 Allow: /
 
-Sitemap: https://www.nexlioo.com/sitemap.xml
+Sitemap: https://nexlioo.com/sitemap.xml
