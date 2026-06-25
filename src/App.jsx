@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import LocalBusinessSchema from "./components/LocalBusinessSchema";
 import WebSiteSchema from "./components/WebSiteSchema";
-import OrganizationSchema from "./components/OrganizationSchema";
 import WebDevelopment from "./pages/WebDevelopment";
 import Branding from "./pages/Branding";
 import Marketing from "./pages/Marketing";
@@ -42,7 +41,6 @@ function App() {
       <Loader />
       <Schema />
       <LocalBusinessSchema />
-      <OrganizationSchema />
       <WebSiteSchema />
       <ScrollProgress />
       <Navbar />
