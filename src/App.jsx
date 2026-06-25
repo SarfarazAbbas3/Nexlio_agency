@@ -3,6 +3,9 @@ import { Routes, Route } from "react-router-dom";
 import WebDevelopment from "./pages/WebDevelopment";
 import Branding from "./pages/Branding";
 import Marketing from "./pages/Marketing";
+import ContentCreation from "./pages/ContentCreation";
+import VideoEditing from "./pages/VideoEditing";
+import VectorArt from "./pages/VectorArt";
 
 import Navbar from "./components/Navbar";
 import Portfolio from "./components/Portfolio";
@@ -13,7 +16,6 @@ import Cursor from "./components/Cursor";
 import Hero from "./components/Hero";
 import HorizontalScroll from "./components/HorizontalScroll";
 import Contact from "./components/Contact";
-import Particles from "./components/Particles";
 import "./index.css";
 import WhatsAppButton from "./components/WhatsAppButton";
 import WhyChoose from "./components/WhyChoose";
@@ -27,11 +29,12 @@ import ReactGA from "react-ga4";
 
 function App() {
   useEffect(() => {
-  ReactGA.send({
-    hitType: "pageview",
-    page: window.location.pathname,
-  });
-}, []);
+    ReactGA.send({
+      hitType: "pageview",
+      page: window.location.pathname,
+    });
+  }, []);
+
   return (
     <>
       <Loader />
@@ -39,44 +42,59 @@ function App() {
       <Navbar />
       <ProgressBar />
       <Cursor />
-      {/* <Particles /> */}
 
       <div className="bg-glow glow-1"></div>
       <div className="bg-glow glow-2"></div>
 
       <Routes>
-  <Route
-    path="/"
-    element={
-      <>
-        <Hero />
-        <HorizontalScroll />
-        <Portfolio />
-        <Insights />
-        <Testimonials />
-        <WhyChoose />
-        <Process />
-        <Contact />
-        <Footer />
-      </>
-    }
-  />
+        <Route
+          path="/"
+          element={
+            <>
+              <Hero />
+              <HorizontalScroll />
+              <Portfolio />
+              <Insights />
+              <Testimonials />
+              <WhyChoose />
+              <Process />
+              <Contact />
+              <Footer />
+            </>
+          }
+        />
 
-  <Route
-    path="/web-development"
-    element={<WebDevelopment />}
-  />
+        <Route
+          path="/web-development"
+          element={<WebDevelopment />}
+        />
 
-  <Route
-    path="/branding"
-    element={<Branding />}
-  />
+        <Route
+          path="/branding"
+          element={<Branding />}
+        />
 
-  <Route
-    path="/marketing"
-    element={<Marketing />}
-  />
-</Routes>
+        <Route
+          path="/marketing"
+          element={<Marketing />}
+        />
+
+        <Route
+          path="/content-creation"
+          element={<ContentCreation />}
+        />
+
+        <Route
+          path="/video-editing"
+          element={<VideoEditing />}
+        />
+
+        <Route
+          path="/vector-art"
+          element={<VectorArt />}
+        />
+      </Routes>
+
       <WhatsAppButton />
     </>
   );

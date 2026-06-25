@@ -105,125 +105,131 @@ export default function HorizontalScroll() {
   const trackRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   // console.log("HorizontalScroll Loaded");
-  
 
- useLayoutEffect(() => {
-  if (!sectionRef.current || !trackRef.current) return;
 
-  const ctx = gsap.context(() => {
-    const panels = trackRef.current.children;
+  useLayoutEffect(() => {
+    if (!sectionRef.current || !trackRef.current) return;
 
-    gsap.to(trackRef.current, {
-      xPercent: -100 * (panels.length - 1),
-      ease: "none",
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        pin: true,
-        scrub: 1,
-        end: () => "+=" + window.innerWidth * (panels.length - 1),
-        onUpdate: (self) => {
-          setActiveIndex(
-            Math.round(self.progress * (panels.length - 1))
-          );
+    const ctx = gsap.context(() => {
+      const panels = trackRef.current.children;
+
+      gsap.to(trackRef.current, {
+        xPercent: -100 * (panels.length - 1),
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          pin: true,
+          scrub: 1,
+          end: () => "+=" + window.innerWidth * (panels.length - 1),
+          onUpdate: (self) => {
+            setActiveIndex(
+              Math.round(self.progress * (panels.length - 1))
+            );
+          },
         },
-      },
-    });
-  }, sectionRef);
+      });
+    }, sectionRef);
 
-  return () => ctx.revert();
-}, []);
+    return () => ctx.revert();
+  }, []);
 
-    return (
-      <section
-        id="services"
-        ref={sectionRef}
-        className="horizontal-section"
-      >
-        <div className="service-counter">
-          {String(activeIndex + 1).padStart(2, "0")} /{" "}
-          {String(totalServices).padStart(2, "0")}
-        </div>
-        <div ref={trackRef} className="horizontal-track">
-          {services.map((service) => (
-            <div
-              key={service.title}
-              className="service-panel"
+  return (
+    <section
+      id="services"
+      ref={sectionRef}
+      className="horizontal-section"
+    >
+      <div className="service-counter">
+        {String(activeIndex + 1).padStart(2, "0")} /{" "}
+        {String(totalServices).padStart(2, "0")}
+      </div>
+      <div ref={trackRef} className="horizontal-track">
+        {services.map((service) => (
+          <div
+            key={service.title}
+            className="service-panel"
+          >
+
+            <video
+              className="service-video"
+              autoPlay
+              muted
+              loop
+              playsInline
             >
+              <source src={service.video} type="video/mp4" />
+            </video>
 
-              <video
-                className="service-video"
-                autoPlay
-                muted
-                loop
-                playsInline
+            <div className="overlay"></div>
+
+            <motion.div
+              className="service-content"
+              initial={{ opacity: 0, y: 80 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+
+            >
+              <motion.span
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: 0.1 }}
               >
-                <source src={service.video} type="video/mp4" />
-              </video>
+                {service.number}
+              </motion.span>
 
-              <div className="overlay"></div>
-
-              <motion.div
-                className="service-content"
-                initial={{ opacity: 0, y: 80 }}
+              <motion.h2
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-
+                transition={{ delay: 0.2 }}
               >
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ delay: 0.1 }}
-                >
-                  {service.number}
-                </motion.span>
+                {service.title}
+              </motion.h2>
 
-                <motion.h2
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                >
-                  {service.title}
-                </motion.h2>
-
-                <motion.p
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
-                >
-                  {service.description}
-                </motion.p>
-                <div className="service-meta">
-                  <div className="service-stats">
-                    {service.stats}
-                  </div>
-
-                  <ul className="service-features">
-                    {service.features.map((feature) => (
-                      <li key={feature}>{feature}</li>
-                    ))}
-                  </ul>
+              <motion.p
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+              >
+                {service.description}
+              </motion.p>
+              <div className="service-meta">
+                <div className="service-stats">
+                  {service.stats}
                 </div>
 
-                <div style={{ marginTop: "25px" }}>
-                  <Link
-                    to={
-                      service.title === "Web Development"
-                        ? "/web-development"
-                        : service.title === "Branding"
-                          ? "/branding"
-                          : service.title === "Marketing"
-                            ? "/marketing"
-                            : "/"
-                    }
-                    className="hero-btn"
-                  >
-                    Learn More
-                  </Link>
-                </div>
-              </motion.div>
-            </div>
-          ))}
-        </div>
-      </section>
-    );
-  }
+                <ul className="service-features">
+                  {service.features.map((feature) => (
+                    <li key={feature}>{feature}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div style={{ marginTop: "25px" }}>
+                <Link
+                  to={
+                    service.title === "Web Development"
+                      ? "/web-development"
+                      : service.title === "Branding"
+                        ? "/branding"
+                        : service.title === "Marketing"
+                          ? "/marketing"
+                          : service.title === "Content Creation"
+                            ? "/content-creation"
+                            : service.title === "Video Editing"
+                              ? "/video-editing"
+                              : service.title === "Vector Art"
+                                ? "/vector-art"
+                                : "/"
+                  }
+                  className="hero-btn"
+                >
+                  Learn More
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
