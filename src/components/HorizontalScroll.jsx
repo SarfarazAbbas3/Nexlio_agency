@@ -104,41 +104,33 @@ export default function HorizontalScroll() {
   const sectionRef = useRef(null);
   const trackRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  console.log("HorizontalScroll Loaded");
+  // console.log("HorizontalScroll Loaded");
   
 
  useLayoutEffect(() => {
-  console.log("useLayoutEffect Running");
   if (!sectionRef.current || !trackRef.current) return;
 
-  const panels = trackRef.current.children;
+  const ctx = gsap.context(() => {
+    const panels = trackRef.current.children;
 
-  const animation = gsap.to(trackRef.current, {
-    xPercent: -100 * (panels.length - 1),
-    ease: "none",
-    scrollTrigger: {
-      trigger: sectionRef.current,
-      pin: true,
-      scrub: 1,
-      end: () => "+=" + window.innerWidth * (panels.length - 1),
-      onUpdate: (self) => {
-        const index = Math.round(
-          self.progress * (panels.length - 1)
-        );
-        setActiveIndex(index);
+    gsap.to(trackRef.current, {
+      xPercent: -100 * (panels.length - 1),
+      ease: "none",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        pin: true,
+        scrub: 1,
+        end: () => "+=" + window.innerWidth * (panels.length - 1),
+        onUpdate: (self) => {
+          setActiveIndex(
+            Math.round(self.progress * (panels.length - 1))
+          );
+        },
       },
-    },
-  });
+    });
+  }, sectionRef);
 
-  return () => {
-  if (animation.scrollTrigger) {
-    animation.scrollTrigger.kill();
-  }
-
-  animation.kill();
-
-  ScrollTrigger.killAll();
-};
+  return () => ctx.revert();
 }, []);
 
     return (
