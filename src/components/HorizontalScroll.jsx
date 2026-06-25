@@ -1,4 +1,5 @@
 
+import { Link } from "react-router-dom";
 import { useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -17,45 +18,45 @@ import vectorVideo from "../assets/videos/vector.mp4";
 gsap.registerPlugin(ScrollTrigger);
 
 const services = [
-  
+
   {
     number: "01",
     title: "Web Development",
     description:
       "Custom websites, e-commerce platforms and scalable web applications built for growth.",
-     stats: "50+ Projects Delivered",
-  features: [
-    "Custom Websites",
-    "E-commerce Stores",
-    "Web Applications"
-  ],
-    
-      video: webVideo,
+    stats: "50+ Projects Delivered",
+    features: [
+      "Custom Websites",
+      "E-commerce Stores",
+      "Web Applications"
+    ],
+
+    video: webVideo,
   },
   {
     number: "02",
     title: "Branding",
     description:
       "Memorable visual identities, logos and brand systems that make your business stand out.",
-     stats: "30+ Brands Built",
-  features: [
-    "Logo Design",
-    "Brand Identity",
-    "Brand Guidelines"
-  ],
-      video: brandingVideo,
+    stats: "30+ Brands Built",
+    features: [
+      "Logo Design",
+      "Brand Identity",
+      "Brand Guidelines"
+    ],
+    video: brandingVideo,
   },
   {
     number: "03",
     title: "Marketing",
     description:
       "Data-driven campaigns designed to increase visibility, leads and conversions.",
-     stats: "100+ Campaigns Run",
-  features: [
-    "Social Media Marketing",
-    "Email Marketing",
-    "SEO Optimization"
-  ],
+    stats: "100+ Campaigns Run",
+    features: [
+      "Social Media Marketing",
+      "Email Marketing",
+      "SEO Optimization"
+    ],
     video: marketingVideo,
   },
   {
@@ -63,12 +64,12 @@ const services = [
     title: "Content Creation",
     description:
       "Creative content strategies for social media, websites and digital campaigns.",
-     stats: "200+ Pieces Created",
-  features: [
-    "Social Media Content",
-    "Blog Writing",
-    "Copywriting"
-  ],  
+    stats: "200+ Pieces Created",
+    features: [
+      "Social Media Content",
+      "Blog Writing",
+      "Copywriting"
+    ],
     video: contentVideo,
   },
   {
@@ -76,25 +77,25 @@ const services = [
     title: "Video Editing",
     description:
       "High-impact videos with cinematic editing, motion graphics and storytelling.",
-     stats: "50+ Videos Edited",
-  features: [
-    "Cinematic Editing",
-    "Motion Graphics",
-    "Storytelling"
-  ],
-      video: editingVideo,
+    stats: "50+ Videos Edited",
+    features: [
+      "Cinematic Editing",
+      "Motion Graphics",
+      "Storytelling"
+    ],
+    video: editingVideo,
   },
   {
     number: "06",
     title: "Vector Art",
     description:
       "Professional illustrations, icons and scalable graphics for digital brands.",
-     stats: "100+ Illustrations Created",
-  features: [
-    "Illustrations",
-    "Icons",
-    "Scalable Graphics"
-  ],
+    stats: "100+ Illustrations Created",
+    features: [
+      "Illustrations",
+      "Icons",
+      "Scalable Graphics"
+    ],
     video: vectorVideo,
   },
 ];
@@ -103,125 +104,134 @@ export default function HorizontalScroll() {
   const sectionRef = useRef(null);
   const trackRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  console.log("HorizontalScroll Loaded");
+  
 
-  useLayoutEffect(() => {
-    const panels = trackRef.current.children;
+ useLayoutEffect(() => {
+  console.log("useLayoutEffect Running");
+  if (!sectionRef.current || !trackRef.current) return;
 
-    const animation = gsap.to(trackRef.current, {
-      xPercent: -100 * (panels.length - 1),
-      ease: "none",
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        pin: true,
-        scrub: 1,
-        end: () => "+=" + window.innerWidth * (panels.length - 1),
-        onUpdate: (self) => {
-  const index = Math.round(self.progress * (panels.length - 1));
-  setActiveIndex(index);
-},
+  const panels = trackRef.current.children;
+
+  const animation = gsap.to(trackRef.current, {
+    xPercent: -100 * (panels.length - 1),
+    ease: "none",
+    scrollTrigger: {
+      trigger: sectionRef.current,
+      pin: true,
+      scrub: 1,
+      end: () => "+=" + window.innerWidth * (panels.length - 1),
+      onUpdate: (self) => {
+        const index = Math.round(
+          self.progress * (panels.length - 1)
+        );
+        setActiveIndex(index);
       },
-    });
+    },
+  });
 
-    return () => {
-      animation.kill();
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
-  }, []);
+  return () => {
+  if (animation.scrollTrigger) {
+    animation.scrollTrigger.kill();
+  }
 
-  return (
-    <section
-  id="services"
-  ref={sectionRef}
-  className="horizontal-section"
->
-  <div className="service-counter">
-  {String(activeIndex + 1).padStart(2, "0")} /{" "}
-  {String(totalServices).padStart(2, "0")}
-</div>
-      <div ref={trackRef} className="horizontal-track">
-        {services.map((service) => (
-          <div
-  key={service.title}
-  className="service-panel"
->
- 
-            <video
-              className="service-video"
-              autoPlay
-              muted
-              loop
-              playsInline
+  animation.kill();
+
+  ScrollTrigger.killAll();
+};
+}, []);
+
+    return (
+      <section
+        id="services"
+        ref={sectionRef}
+        className="horizontal-section"
+      >
+        <div className="service-counter">
+          {String(activeIndex + 1).padStart(2, "0")} /{" "}
+          {String(totalServices).padStart(2, "0")}
+        </div>
+        <div ref={trackRef} className="horizontal-track">
+          {services.map((service) => (
+            <div
+              key={service.title}
+              className="service-panel"
             >
-              <source src={service.video} type="video/mp4" />
-            </video>
 
-            <div className="overlay"></div>
+              <video
+                className="service-video"
+                autoPlay
+                muted
+                loop
+                playsInline
+              >
+                <source src={service.video} type="video/mp4" />
+              </video>
 
-            <motion.div
-  className="service-content"
-  initial={{ opacity: 0, y: 80 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.8 }}
-  whileHover={{
-    rotateX: -4,
-    rotateY: 4,
-    scale: 1.03,
-  }}
->
-  <motion.span
-    initial={{ opacity: 0 }}
-    whileInView={{ opacity: 1 }}
-    transition={{ delay: 0.1 }}
-  >
-    {service.number}
-  </motion.span>
+              <div className="overlay"></div>
 
-  <motion.h2
-    initial={{ opacity: 0, y: 40 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ delay: 0.2 }}
-  >
-    {service.title}
-  </motion.h2>
+              <motion.div
+                className="service-content"
+                initial={{ opacity: 0, y: 80 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
 
-  <motion.p
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ delay: 0.3 }}
-  >
-    {service.description}
-  </motion.p>
-  <div className="service-meta">
-  <div className="service-stats">
-    {service.stats}
-  </div>
+              >
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: 0.1 }}
+                >
+                  {service.number}
+                </motion.span>
 
-  <ul className="service-features">
-    {service.features.map((feature) => (
-      <li key={feature}>{feature}</li>
-    ))}
-  </ul>
-</div>
+                <motion.h2
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  {service.title}
+                </motion.h2>
 
-  <motion.button onClick={() => {
-    ReactGA.event({
-      category: "Lead",
-      action: `Start Project - ${service.title}`,
-    });
+                <motion.p
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  {service.description}
+                </motion.p>
+                <div className="service-meta">
+                  <div className="service-stats">
+                    {service.stats}
+                  </div>
 
-    window.location.href = "#contact";
-  }}
+                  <ul className="service-features">
+                    {service.features.map((feature) => (
+                      <li key={feature}>{feature}</li>
+                    ))}
+                  </ul>
+                </div>
 
-    initial={{ opacity: 0, scale: 0.9 }}
-    whileInView={{ opacity: 1, scale: 1 }}
-    transition={{ delay: 0.4 }}
-  >
-    Start Project
-  </motion.button>
-</motion.div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
+                <div style={{ marginTop: "25px" }}>
+                  <Link
+                    to={
+                      service.title === "Web Development"
+                        ? "/web-development"
+                        : service.title === "Branding"
+                          ? "/branding"
+                          : service.title === "Marketing"
+                            ? "/marketing"
+                            : "/"
+                    }
+                    className="hero-btn"
+                  >
+                    Learn More
+                  </Link>
+                </div>
+              </motion.div>
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  }
