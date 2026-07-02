@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import OrganizationSchema from "./components/OrganizationSchema";
 import LocalBusinessSchema from "./components/LocalBusinessSchema";
+import AIChatBot from "./components/AIChatBot";
 import WebSiteSchema from "./components/WebSiteSchema";
 import WebDevelopment from "./pages/WebDevelopment";
 import Branding from "./pages/Branding";
@@ -59,8 +60,10 @@ function App() {
             <>
               <Hero />
               <HorizontalScroll />
+              
               <Portfolio />
               <Insights />
+              
               <Testimonials />
               <WhyChoose />
               <Process />
@@ -102,6 +105,7 @@ function App() {
       </Routes>
 
       <WhatsAppButton />
+      <AIChatBot />
     </>
   );
 }
